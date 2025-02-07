@@ -23,7 +23,15 @@ public class ProductController {
     public String listProducts(Model model) {
         Map<String, Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-        return "Product_page"; // Tên view (productList.html)
+        return "Product_page";
+    }
+
+    @GetMapping("/admin")
+    public String adminpage(Model model) {
+        Map<String, Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        System.out.println("adminpage");
+        return "admin";
     }
 
     // Thêm sản phẩm mới
@@ -32,6 +40,6 @@ public class ProductController {
                              @RequestParam double price, @RequestParam int quantity,
                              @RequestParam String imageUrl) {
         productService.addProduct(new Product(name, price, quantity, imageUrl));
-        return "redirect:/Product"; // Chuyển hướng về danh sách sản phẩm sau khi thêm
+        return "redirect:/Product";
     }
 }
