@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Danh sách Sản phẩm</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Giá tiền</th>
+        <th>Số lượng</th>
+        <th>URL ảnh</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${products}">
+        <td th:text="${entry.value.name}"></td>
+        <td th:text="${entry.value.price}"></td>
+        <td th:text="${entry.value.quantity}"></td>
+        <td><img th:src="${entry.value.imageUrl}" th:alt="${entry.value.name}" width="100"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Thêm Sản phẩm mới</h2>
+<form action="#" th:action="@{/addProduct}" method="post">
+    <input type="text" name="name" placeholder="Tên sản phẩm" required>
+    <input type="number" name="price" placeholder="Giá tiền" required>
+    <input type="number" name="quantity" placeholder="Số lượng" required>
+    <input type="text" name="imageUrl" placeholder="URL ảnh" required>
+    <button type="submit">Thêm Sản phẩm</button>
+</form>
+</body>
+</html>

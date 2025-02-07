@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class AuthController {
@@ -35,32 +35,12 @@ public class AuthController {
         System.out.println("di qua login");
         return "login";
     }
-//
-//    @PostMapping("/login")
-//    public String loginUser(Users user, Model model) {
-//        System.out.println("test");
-//        boolean isAuthenticated = usersService.loginUser(user);
-//        if (isAuthenticated) {
-//            return "redirect:/home";
-//        } else {
-//            model.addAttribute("loginError", true);
-//            return "login";
-//        }
-//    }
 
-//    public String login(@RequestParam String username, @RequestParam String password) {
-//        boolean isLoggedIn = usersService.loginUser(username, password);
-//        if (isLoggedIn) {
-//            return "Login successful";
-//        } else {
-//            return "Invalid username or password";
-//        }
-//    }
 
     @GetMapping("/test")
    public String Index() {
        System.out.println("home");
-       return "test";
+       return "Product_page";
    }
 
     @GetMapping("/")
