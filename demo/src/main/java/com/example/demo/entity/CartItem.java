@@ -40,12 +40,7 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public void checkall() {
-        System.out.println("Check all");
-        System.out.println(product);
-        System.out.println(quantity);
-        System.out.println(user);
-    }
+
     public Long getId() {
         return id;
     }
