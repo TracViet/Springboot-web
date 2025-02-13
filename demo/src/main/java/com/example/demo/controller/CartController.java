@@ -28,11 +28,13 @@ public class CartController {
     public String getCartItems(@AuthenticationPrincipal Users user, Model model) {
         List<CartItem> cartItems = cartService.getCartItems(user);
        List<Product> products = productService.getAllProducts();
+        Long total = cartService.gettotal(user);
+        model.addAttribute("total", total);
 //        model.addAttribute("cartItems", cartService.getCartItems(user));
 //        model.addAttribute("products", productService.getAllProducts());
-        for (CartItem item : cartItems) { //Kiểm tra item trong Cart
-            item.checkall();
-        }
+        // for (CartItem item : cartItems) { //Kiểm tra item trong Cart
+        //     item.checkall();
+        // }
         model.addAttribute("cartItems", cartItems != null ? cartItems : List.of());
 
         model.addAttribute("products", products != null ? products : List.of());
