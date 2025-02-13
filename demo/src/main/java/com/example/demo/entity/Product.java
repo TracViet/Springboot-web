@@ -1,30 +1,41 @@
 package com.example.demo.entity;
 
-import java.util.Collection;
+import jakarta.persistence.*;
 
+@Entity // 🔥 Đánh dấu đây là Entity
+@Table(name = "products")
 public class Product {
-    //private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private double price;
     private int quantity;
     private String imageUrl;
 
-    // Constructor
+    // 🔥 Thêm constructor không tham số (fix lỗi)
+    public Product() {
+    }
+
+    // Constructor có tham số
     public Product(String name, double price, int quantity, String imageUrl) {
-        //this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.imageUrl = imageUrl;
     }
 
-    // Getters and Setters
-//    public int getid() {
-//        return id;
-//    }
-//    public void setid(int id) {
-//        this.id = id;
-//    }
+    // Getters và Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -56,13 +67,8 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-
-    public boolean isEmpty() {
-        if (name == null || price == 0 || quantity == 0)
-        return true;
-        return false;
+    @Override
+    public String toString() {
+        return "Product{id=" + id + ", name='" + name + "', price=" + price + "}";
     }
-
-
 }

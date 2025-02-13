@@ -30,8 +30,6 @@ public class Users implements UserDetails {
     private String password;
 
 
-//    @Column(name = "email_id", nullable = true, unique = true)
-//    private String emailId;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -73,4 +71,9 @@ public class Users implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", username='" + username + "'}";
+    }
+
 }

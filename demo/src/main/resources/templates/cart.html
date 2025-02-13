@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Giỏ hàng</title>
+</head>
+<body>
+
+<h2>Danh sách sản phẩm</h2>
+<table border="1">
+    <tr>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Hình ảnh</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td><img th:src="${product.imageUrl}" width="50"></td>
+        <td>
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
+                <button class="btn" type="submit">Thêm</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<h1>Giỏ hàng của bạn</h1>
+<table border="1">
+    <tr>
+        <th>Sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="item : ${cartItems}">
+        <td th:text="${item.product.name}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td>
+            <a th:href="@{/cart/remove/{id}(id=${item.id})}">Xóa</a>
+        </td>
+    </tr>
+</table>
+<br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

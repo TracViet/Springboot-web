@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Users;
 import com.example.demo.service.UsersService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +41,7 @@ public class AuthController {
     @GetMapping("/test")
    public String Index() {
        System.out.println("home");
-       return "Product_page";
+       return "index";
    }
 
 
@@ -51,9 +50,9 @@ public class AuthController {
         String username = getContext().getAuthentication().getName();
 
         if ("admin".equals(username)) {
-            return "admin"; // trả về trang admin
+            return "redirect:/products"; // trả về trang admin
         } else {
-            return "home"; // trả về trang home
+            return "redirect:/cart"; // trả về trang home
         }
     }
 }
