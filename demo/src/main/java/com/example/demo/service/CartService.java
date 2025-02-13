@@ -52,6 +52,14 @@ public class CartService {
         return null;
     }
 
+    public long gettotal(Users user) {
+        List<CartItem> cartItems = cartItemRepository.findByUser(user);
+
+        return cartItems.stream()
+                .mapToLong(item -> (long) (item.getProduct().getPrice() * item.getQuantity())) // Tính tổng tiền
+                .sum();
+    }
+
 
     public void removeFromCart(Long cartItemId) {
         Optional<CartItem> cartItemOpt = cartItemRepository.findById(cartItemId);
