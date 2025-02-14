@@ -18,11 +18,26 @@
             <td th:text="${product.quantity}"></td>
             <td><img th:src="${product.imageUrl}" width="50"></td>
             <td>
+                <form th:action="@{/products/add1item/{id}(id=${product.id})}" method="post">
+                    <button type="submit" >
+                        Thêm 1 item
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/products/delete1item/{id}(id=${product.id})}" method="post">
+                    <button type="submit" >
+                        Xóa 1 item
+                    </button>
+                </form>
+            </td>
+            <td>
                 <form th:action="@{/products/delete/{id}(id=${product.id})}" method="post">
                     <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
                         Xóa
                     </button>
                 </form>
+            </td>
         </tr>
     </table>
 

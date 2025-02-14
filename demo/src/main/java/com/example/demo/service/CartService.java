@@ -40,7 +40,8 @@ public class CartService {
 
             System.out.println("quantity: " + quantity);
             if (product.getQuantity() < quantity) {
-                throw new IllegalArgumentException("Không đủ hàng trong kho!");
+                System.out.println("Không đủ hàng trong kho!");
+                return null;
             }
 
             CartItem existingCartItem = cartItemRepository.findByUserAndProduct(user, product);
@@ -59,7 +60,7 @@ public class CartService {
                 cartItem = cartItemRepository.save(cartItem);
             }
 
-            // Trừ số lượng tồn kho
+
             product.setQuantity(product.getQuantity() - quantity);
             productRepository.save(product);
 
@@ -68,9 +69,6 @@ public class CartService {
 
         return null;
     }
-
-
-
 
 
     public void removeFromCart(Long cartItemId) {
